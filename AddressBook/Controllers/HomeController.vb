@@ -2,8 +2,12 @@
     Inherits System.Web.Mvc.Controller
 
     Function Index() As ActionResult
-        ViewData("Message") = "Modify this template to jump-start your ASP.NET MVC application."
-
+        Dim contacts As ContactModel() = ContactsController.GetAllContacts()
+        ViewData("Contacts") = contacts
+        ViewData("Addresses") = AddressesController.GetAddresses(contacts)
+        ViewData("Phones") = PhonesController.GetPhones(contacts)
+        ViewData("Birthdays") = ContactsController.GetUpcomingBirthdays(contacts)
+        ViewData("Emails") = EmailsController.GetEmails(contacts)
         Return View()
     End Function
 
@@ -13,9 +17,4 @@
         Return View()
     End Function
 
-    Function Contact() As ActionResult
-        ViewData("Message") = "Your contact page."
-
-        Return View()
-    End Function
 End Class

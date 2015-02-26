@@ -212,20 +212,19 @@
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\WebApiConfig.vb" />
+    <Compile Include="Controllers\AddressesController.vb" />
     <Compile Include="Controllers\ContactsController.vb" />
-    <Compile Include="Controllers\CountriesController.vb" />
+    <Compile Include="Controllers\EmailsController.vb" />
+    <Compile Include="Controllers\PhonesController.vb" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Address.vb" />
+    <Compile Include="Models\AddressModel.vb" />
     <Compile Include="Models\ApplicationDataContext.vb" />
     <Compile Include="Models\ContactModel.vb" />
-    <Compile Include="Models\CountryModel.vb" />
     <Compile Include="Models\EmailModel.vb" />
     <Compile Include="Models\PhoneModel.vb" />
-    <Compile Include="Models\PhoneTypeModel.vb" />
-    <Compile Include="Models\TownModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -269,6 +268,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\PublishProfiles\addressbook.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -328,6 +328,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Images\default-avatar.png" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -335,13 +336,6 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Views\Countries\Index.vbhtml" />
-    <Content Include="Views\Countries\Details.vbhtml" />
-    <Content Include="Views\Countries\Create.vbhtml" />
-    <Content Include="Views\Countries\Edit.vbhtml" />
-    <Content Include="Views\Countries\Delete.vbhtml" />
-    <Content Include="Views\Shared\_Layout.vbhtml" />
-    <Content Include="Views\Shared\_CreateContact.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -368,20 +362,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
-    <Content Include="Views\_ViewStart.vbhtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.vbhtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.vbhtml" />
@@ -391,17 +371,7 @@
     <Content Include="Views\Account\Register.vbhtml" />
     <Content Include="Views\Account\ExternalLoginFailure.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
-    <Content Include="Views\Home\About.vbhtml" />
-    <Content Include="Views\Home\Contact.vbhtml" />
-    <Content Include="Views\Contacts\Index.vbhtml" />
-    <Content Include="Views\Contacts\Details.vbhtml" />
-    <Content Include="Views\Contacts\Create.vbhtml" />
-    <Content Include="Views\Contacts\Edit.vbhtml" />
-    <Content Include="Views\Contacts\Delete.vbhtml" />
     <None Include="Views\Home\Index.vbhtml" />
-    <Content Include="Views\Shared\Error.vbhtml" />
-    <Content Include="Views\Shared\_LoginPartial.vbhtml" />
-    <Content Include="Views\Shared\_Layout-Orig.vbhtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>

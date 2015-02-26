@@ -5,6 +5,16 @@ Public Class ContactsController
 
     Private db As New ApplicationDataContext
 
+    Shared Function GetAllContacts() As ContactModel()
+        Dim temp = New ApplicationDataContext().Contacts.ToList()
+        temp.Sort()
+        Return temp.ToArray()
+    End Function
+
+    Shared Function GetUpcomingBirthdays(ByVal contacts As ContactModel()) As ContactModel()
+        Return contacts.ToList().FindAll(Function(p1) p1.Birthday.DayOfYear >= Date.Now.DayOfYear And p1.Birthday.DayOfYear < Date.Now.DayOfYear + 6).ToArray()
+    End Function
+
     '
     ' GET: /Contacts/
 
@@ -39,10 +49,22 @@ Public Class ContactsController
         If ModelState.IsValid Then
             db.Contacts.Add(contactmodel)
             db.SaveChanges()
-            Return RedirectToAction("Index")
+            Return New RedirectResult(Url.Action("Index", "Home") + "#" + contactmodel.Id.ToString())
         End If
 
         Return View(contactmodel)
+    End Function
+
+
+    <HttpPost()> _
+    Function Search(ByVal searchText As String) As ActionResult
+        Dim contacts As ContactModel() = ContactsController.GetAllContacts().ToList().FindAll(Function(p1) p1.FullName.ToLower().Contains(searchText.ToLower().Trim())).ToArray()
+        ViewData("Contacts") = contacts
+        ViewData("Addresses") = AddressesController.GetAddresses(contacts)
+        ViewData("Phones") = PhonesController.GetPhones(contacts)
+        ViewData("Birthdays") = ContactsController.GetUpcomingBirthdays(contacts)
+        Return View("~/Views/Home/Index.vbhtml")
+        'Return RedirectToAction("Index", "Home")
     End Function
 
     '
@@ -65,7 +87,7 @@ Public Class ContactsController
         If ModelState.IsValid Then
             db.Entry(contactmodel).State = EntityState.Modified
             db.SaveChanges()
-            Return RedirectToAction("Index")
+            Return New RedirectResult(Url.Action("Index", "Home") + "#" + contactmodel.Id.ToString())
         End If
 
         Return View(contactmodel)
@@ -88,11 +110,11 @@ Public Class ContactsController
     <HttpPost()> _
     <ActionName("Delete")> _
     <ValidateAntiForgeryToken()> _
-    Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
+    Function DeleteConfirmed(ByVal id As Integer) As ActionResult
         Dim contactmodel As ContactModel = db.Contacts.Find(id)
         db.Contacts.Remove(contactmodel)
         db.SaveChanges()
-        Return RedirectToAction("Index")
+        Return New RedirectResult(Url.Action("Index", "Home") + "#" + contactmodel.Id.ToString())
     End Function
 
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)

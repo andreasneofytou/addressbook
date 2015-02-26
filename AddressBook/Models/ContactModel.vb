@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
-Public Class ContactModel
+Public Class ContactModel : Implements IComparable(Of ContactModel)
     <Key> _
     Public Property Id As Integer
     Public Property Name As String
@@ -21,5 +21,10 @@ Public Class ContactModel
             End If
         End Set
     End Property
+
+    Public Function CompareTo(ByVal other As ContactModel) As Integer Implements System.IComparable(Of ContactModel).CompareTo
+
+        Return Me.FullName.Trim() < other.FullName.Trim()
+    End Function
 
 End Class
